@@ -37,11 +37,20 @@ export default () => {
         const {
           data: { results: popular },
         } = await moviesAPI.popular();
-        setState({ ...state, nowPlaying, upcoming, topRated, popular });
+        setState({
+          ...state,
+          nowPlaying,
+          upcoming,
+          topRated,
+          popular,
+          loading: false,
+        });
       } catch (e) {
-        setState({ ...state, error: "Can't find movies information." });
-      } finally {
-        setState({ ...state, loading: false });
+        setState({
+          ...state,
+          error: "Can't find movies information.",
+          loading: false,
+        });
       }
     }
     get();
