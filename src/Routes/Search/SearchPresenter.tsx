@@ -7,6 +7,7 @@ export default function SearchPresenter({
   searchTerm,
   error,
   loading,
+  handleSubmit,
 }: SearchInterface) {
   return <div>Search</div>;
 }
