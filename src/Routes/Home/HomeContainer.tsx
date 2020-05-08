@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import HomePresenter from "./HomePresenter";
 import { moviesAPI } from "../../api";
 
+type MovieType = {
+  title: string;
+};
+
 export interface MovieInterface {
-  nowPlaying: any[];
-  upcoming: null;
-  topRated: null;
-  popular: null;
+  nowPlaying: Array<MovieType>;
+  upcoming: Array<MovieType>;
+  topRated: Array<MovieType>;
+  popular: Array<MovieType>;
   error: string;
   loading: boolean;
 }
@@ -14,9 +18,9 @@ export interface MovieInterface {
 export default () => {
   const [state, setState] = useState({
     nowPlaying: [],
-    upcoming: null,
-    topRated: null,
-    popular: null,
+    upcoming: [],
+    topRated: [],
+    popular: [],
     error: "",
     loading: true,
   });
