@@ -3,6 +3,7 @@ import HomePresenter from "./HomePresenter";
 import { moviesAPI } from "../../api";
 
 type MovieType = {
+  id: string;
   title: string;
 };
 
