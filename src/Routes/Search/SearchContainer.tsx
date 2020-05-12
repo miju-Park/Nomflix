@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import SearchPresenter from "./SearchPresenter";
 import { moviesAPI, tvAPI } from "../../api";
+import { MovieType } from "../Home/HomeContainer";
+import { TvType } from "../TV/TVContainer";
 export interface SearchInterface {
-  movieResults: null;
-  tvResults: null;
+  movieResults: Array<MovieType>;
+  tvResults: Array<TvType>;
   searchTerm: string;
   error: string;
   loading: boolean;
-  handleSubmit: (term: string) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  updateTerm: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export default function SearchContainer() {
   const [state, setState] = useState({
-    movieResults: null,
-    tvResults: null,
+    movieResults: [],
+    tvResults: [],
     searchTerm: "",
     error: "",
     loading: false,
@@ -34,15 +37,19 @@ export default function SearchContainer() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (searchTerm !== "") {
       searchByTerm(searchTerm);
     }
   };
 
-  useEffect(() => {
-    handleSubmit();
-  }, []);
+  const updateTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { value: term },
+    } = e;
+    setState({ ...state, searchTerm: term });
+  };
 
   return (
     <SearchPresenter
@@ -52,6 +59,7 @@ export default function SearchContainer() {
       error={error}
       loading={loading}
       handleSubmit={handleSubmit}
+      updateTerm={updateTerm}
     />
   );
 }

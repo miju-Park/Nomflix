@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HomePresenter from "./HomePresenter";
 import { moviesAPI } from "../../api";
 
-type MovieType = {
+export type MovieType = {
   id: string;
   title: string;
 };

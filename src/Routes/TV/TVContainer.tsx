@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 import TVPresenter from "./TVPresenter";
 import { tvAPI } from "../../api";
+
+export type TvType = {
+  id: string;
+  name: string;
+};
+
 export interface TVInterface {
-  topRated: any[] | null;
-  popular: any[] | null;
-  airingToday: any[] | null;
+  topRated: Array<TvType>;
+  popular: Array<TvType>;
+  airingToday: Array<TvType>;
   error: string;
   loading: boolean;
 }
 export default function TVContainer() {
   const [state, setState] = useState({
-    topRated: null,
-    popular: null,
-    airingToday: null,
+    topRated: [],
+    popular: [],
+    airingToday: [],
     error: "",
     loading: true,
   });
