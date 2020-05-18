@@ -3,6 +3,7 @@ import { SearchInterface } from "./SearchContainer";
 import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Section from "../../Components/Section";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
   padding: 20px;
@@ -53,6 +54,16 @@ export default function SearchPresenter({
               ))}
             </Section>
           )}
+          {error && <Message text={error} color="#e74c3c" />}
+          {tvResults &&
+            movieResults &&
+            tvResults.length === 0 &&
+            movieResults.length === 0 && (
+              <Message
+                text={`Nothing found for: ${searchTerm}`}
+                color="#95a5a6"
+              />
+            )}
         </>
       )}
     </Container>

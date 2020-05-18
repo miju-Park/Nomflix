@@ -3,6 +3,7 @@ import { TVInterface } from "./TVContainer";
 import styled from "styled-components";
 import Section from "../../Components/Section";
 import Loader from "../../Components/Loader";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
   padding: 20px;
@@ -34,6 +35,7 @@ export default function TVPresenter({
           {airingToday.map((show) => show.name)}
         </Section>
       ) : null}
+      {error && <Message text={error} color="#e74c3c" />}
     </Container>
   );
 }

@@ -4,8 +4,8 @@ import { moviesAPI, tvAPI } from "../../api";
 import { MovieType } from "../Home/HomeContainer";
 import { TvType } from "../TV/TVContainer";
 export interface SearchInterface {
-  movieResults: Array<MovieType>;
-  tvResults: Array<TvType>;
+  movieResults: Array<MovieType> | null;
+  tvResults: Array<TvType> | null;
   searchTerm: string;
   error: string;
   loading: boolean;
@@ -14,8 +14,8 @@ export interface SearchInterface {
 }
 export default function SearchContainer() {
   const [state, setState] = useState({
-    movieResults: [],
-    tvResults: [],
+    movieResults: null,
+    tvResults: null,
     searchTerm: "",
     error: "",
     loading: false,

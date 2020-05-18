@@ -3,6 +3,7 @@ import { MovieInterface } from "./HomeContainer";
 import styled from "styled-components";
 import Section from "../../Components/Section";
 import Loader from "../../Components/Loader";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
   padding: 20px;
@@ -48,6 +49,7 @@ const Home = ({
           ))}
         </Section>
       )}
+      {error && <Message text={error} color="#e74c3c" />}
     </Container>
   );
 };
