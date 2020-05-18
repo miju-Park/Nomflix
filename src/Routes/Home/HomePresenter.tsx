@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Section from "../../Components/Section";
 import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
+import Poster from "../../Components/Poster";
 
 const Container = styled.div`
   padding: 20px;
@@ -24,28 +25,56 @@ const Home = ({
       {upcoming && upcoming.length > 0 && (
         <Section title="Upcoming Movies">
           {upcoming.map((movie) => (
-            <span key={movie.id}>{movie.title}</span>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              year={movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              url={movie.poster_path}
+            />
           ))}
         </Section>
       )}
       {nowPlaying && nowPlaying.length > 0 && (
         <Section title="Now Playing">
           {nowPlaying.map((movie) => (
-            <span key={movie.id}>{movie.title}</span>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              year={movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              url={movie.poster_path}
+            />
           ))}
         </Section>
       )}
       {popular && popular.length > 0 && (
         <Section title="Popular Moviews">
           {popular.map((movie) => (
-            <span key={movie.id}>{movie.title}</span>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              year={movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              url={movie.poster_path}
+            />
           ))}
         </Section>
       )}
       {topRated && topRated.length > 0 && (
         <Section title="Top Ratied Movies">
           {topRated.map((movie) => (
-            <span key={movie.id}>{movie.title}</span>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              year={movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              url={movie.poster_path}
+            />
           ))}
         </Section>
       )}
