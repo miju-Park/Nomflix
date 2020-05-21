@@ -28,6 +28,7 @@ const Home = ({
             <Poster
               key={movie.id}
               id={movie.id}
+              isMovie={true}
               title={movie.title}
               year={movie.release_date.substring(0, 4)}
               rating={movie.vote_average}
@@ -42,6 +43,7 @@ const Home = ({
             <Poster
               key={movie.id}
               id={movie.id}
+              isMovie={true}
               title={movie.title}
               year={movie.release_date.substring(0, 4)}
               rating={movie.vote_average}
@@ -56,6 +58,7 @@ const Home = ({
             <Poster
               key={movie.id}
               id={movie.id}
+              isMovie={true}
               title={movie.title}
               year={movie.release_date.substring(0, 4)}
               rating={movie.vote_average}
@@ -70,6 +73,7 @@ const Home = ({
             <Poster
               key={movie.id}
               id={movie.id}
+              isMovie={true}
               title={movie.title}
               year={movie.release_date.substring(0, 4)}
               rating={movie.vote_average}

@@ -42,6 +42,5 @@ export default function DetailContainer() {
     }
     get();
   }, []);
-  console.log(state);
   return <DetailPresenter result={result} loading={loading} error={error} />;
 }
