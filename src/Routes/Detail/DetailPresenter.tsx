@@ -2,6 +2,8 @@ import React from "react";
 import { DetailInterface } from "./DetailContainer";
 import styled from "styled-components";
 import Loader from "../../Components/Loader";
+import { Helmet } from "react-helmet";
+import Message from "../../Components/Message";
 
 type ImageInterface = {
   bgImage: string;
@@ -74,10 +76,23 @@ export default function DetailPresenter({
   loading,
   error,
 }: DetailInterface) {
+  const title = result?.original_title
+    ? result?.original_title
+    : result?.original_name;
   return loading ? (
-    <Loader />
+    <>
+      <Helmet>
+        <title>Loading | Nomflix</title>
+      </Helmet>
+      <Loader />
+    </>
+  ) : error ? (
+    <Message text={error} color="#e74c3c" />
   ) : (
     <Container>
+      <Helmet>
+        <title>{title} | Nomflix</title>
+      </Helmet>
       <Backdrop
         bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
       />
@@ -90,11 +105,7 @@ export default function DetailPresenter({
           }
         />
         <Data>
-          <Title>
-            {result.original_title
-              ? result.original_title
-              : result.original_name}
-          </Title>
+          <Title>{title}</Title>
           <ItemContainer>
             <Item>
               {result.release_date
