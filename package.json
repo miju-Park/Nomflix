@@ -35,7 +35,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "https://miju-Park.github.io/nomflix",
+  "homepage": "./",
   "browserslist": {
     "production": [
       ">0.2%",
