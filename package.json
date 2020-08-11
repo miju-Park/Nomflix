@@ -10,11 +10,14 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-helmet": "^6.0.0",
     "@types/react-router-dom": "^5.1.3",
     "@types/styled-components": "^5.0.1",
     "axios": "0.18",
+    "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.0",
@@ -25,11 +28,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "yarn run build"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "homepage": "https://miju-Park.github.io/nomflix",
   "browserslist": {
     "production": [
       ">0.2%",

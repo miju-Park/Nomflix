@@ -64,7 +64,7 @@ const Poster = ({
   year,
   isMovie = false,
 }: PosterInterface) => (
-  <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
+  <Link to={isMovie ? `/movie/${id}?tab=video` : `/show/${id}`}>
     <Container>
       <ImageContainer>
         <Image

@@ -25,6 +25,7 @@ export default function DetailContainer() {
   useEffect(() => {
     async function get() {
       const parsedId = parseInt(id);
+
       if (isNaN(parsedId)) {
         return push("/");
       }

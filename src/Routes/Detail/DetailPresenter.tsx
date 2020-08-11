@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import { Helmet } from "react-helmet";
 import Message from "../../Components/Message";
+import DetailTabPresenter from "./DetailTabPresenter";
+import { Link, useLocation } from "react-router-dom";
 
 type ImageInterface = {
   bgImage: string;
@@ -56,12 +58,19 @@ const Title = styled.h3`
 
 const ItemContainer = styled.div`
   margin: 20px 0;
+  display: flex;
+  align-items: center;
 `;
 
 const Item = styled.span``;
 
 const Divider = styled.span`
   margin: 0 10px;
+`;
+
+const ImdbItem = styled.img`
+  width: 45px;
+  height: 38px;
 `;
 
 const Overview = styled.p`
@@ -71,6 +80,45 @@ const Overview = styled.p`
   width: 50%;
 `;
 
+const TabContainer = styled.div`
+  margin-top: 10px;
+  width: 50%;
+  height: 45px;
+  /* display: flex;
+  justify-content: center; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* overflow: hidden; */
+  background-color: rgba(25, 25, 25, 0.6);
+`;
+
+const TabHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 45px;
+`;
+
+const SLink = styled(Link)`
+  width: 33%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-bottom: 3px solid
+    ${(props: { isActive?: boolean }) =>
+      props.isActive ? "#a4b0be" : "transparent"};
+  transition: border-bottom 0.5s ease-in-out;
+`;
+const TabBody = styled.div`
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  background-color: rgba(25, 25, 25, 0.6);
+  height: auto;
+`;
 export default function DetailPresenter({
   result,
   loading,
@@ -79,6 +127,8 @@ export default function DetailPresenter({
   const title = result?.original_title
     ? result?.original_title
     : result?.original_name;
+  const pathInfo = useLocation();
+  const { search: query, pathname } = pathInfo;
   return loading ? (
     <>
       <Helmet>
@@ -125,8 +175,45 @@ export default function DetailPresenter({
                     : `${genre.name} / `
                 )}
             </Item>
+            {result.imdb_id && <Divider>•</Divider>}
+            {result.imdb_id && (
+              <a
+                target="_blank"
+                href={`https://www.imdb.com/title/${result.imdb_id}`}
+              >
+                <ImdbItem
+                  alt="IMDB Logo"
+                  src={"https://img.icons8.com/color/48/000000/imdb.png"}
+                />
+              </a>
+            )}
           </ItemContainer>
           <Overview>{result.overview}</Overview>
+          <TabContainer>
+            <TabHeader>
+              <SLink
+                isActive={query.includes("video")}
+                to={`${pathname}?tab=video`}
+              >
+                Video
+              </SLink>
+              <SLink
+                isActive={query.includes("production")}
+                to={`${pathname}?tab=production`}
+              >
+                Production
+              </SLink>
+              <SLink
+                isActive={query.includes("more")}
+                to={`${pathname}?tab=more`}
+              >
+                More
+              </SLink>
+            </TabHeader>
+            <TabBody>
+              <DetailTabPresenter menu={query.split("=")[1]} info={result} />
+            </TabBody>
+          </TabContainer>
         </Data>
       </Content>
     </Container>
