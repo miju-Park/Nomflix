@@ -115,7 +115,7 @@ const DetailTabPresenter = ({ menu, info }: TabInterface) => {
     if(key===''){
       return null;
     }
-		return <iframe src={`https://www.youtube.com/embed/${info.videos.results[0].key}`} />;
+		return <iframe title={info.videos.results[0].name} src={`https://www.youtube.com/embed/${info.videos.results[0].key}`} />;
 	} else if (menu === 'production' && info.production_companies && info.production_companies.length > 0) {
 		return (
 			<ProductionCompany>

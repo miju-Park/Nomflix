@@ -129,7 +129,6 @@ export default function DetailPresenter({
     : result?.original_name;
   const pathInfo = useLocation();
   const { search: query, pathname } = pathInfo;
-  console.log(result)
   return loading ? (
     <>
       <Helmet>
@@ -179,7 +178,7 @@ export default function DetailPresenter({
             {result.imdb_id && <Divider>•</Divider>}
             {result.imdb_id && (
               <a
-                target="_blank"
+                target="_blank" rel="noopener noreferrer"
                 href={`https://www.imdb.com/title/${result.imdb_id}?tab=video`}
               >
                 <ImdbItem
