@@ -1,36 +1,37 @@
-import * as React from "react";
-import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import * as React from 'react';
+import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
 
 type ItemProps = {
-  current: boolean;
+	current: boolean;
 };
 
 const Header = styled.header`
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
+	color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: center;
 
-  background-color: rgba(20, 20, 22, 0.8);
-  z-index: 10;
-  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
+	background-color: rgba(20, 20, 22, 0.8);
+	z-index: 10;
+	box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
 `;
 
-const List = styled.ul`
-  display: flex;
-`;
+const List = styled.ul`display: flex;`;
 
-const Item = styled.li<ItemProps>`
+const Item =
+	styled.li <
+	ItemProps >
+	`
   width: 70px;
   height: 50px;
   text-align: center;
   border-bottom: 3px solid
-    ${(props) => (props.current ? "#3498db" : "transparent")};
+    ${(props) => (props.current ? '#3498db' : 'transparent')};
   transition: border-bottom 0.5s ease-in-out;
 `;
 
@@ -41,20 +42,20 @@ const SLink = styled(Link)`
   justify-content: center;
 `;
 export default () => {
-  const pathname = useLocation().pathname;
-  return (
-    <Header>
-      <List>
-        <Item current={pathname === "/"}>
-          <SLink to="/">Movies</SLink>
-        </Item>
-        <Item current={pathname === "/tv"}>
-          <SLink to="/tv">TV Shows</SLink>
-        </Item>
-        <Item current={pathname === "/search"}>
-          <SLink to="/search">Search</SLink>
-        </Item>
-      </List>
-    </Header>
-  );
+	const pathname = useLocation().pathname;
+	return (
+		<Header>
+			<List>
+				<Item current={pathname === '/' || pathname.includes('movie')}>
+					<SLink to="/">Movies</SLink>
+				</Item>
+				<Item current={pathname === '/tv' || pathname.includes('show')}>
+					<SLink to="/tv">TV Shows</SLink>
+				</Item>
+				<Item current={pathname === '/search'}>
+					<SLink to="/search">Search</SLink>
+				</Item>
+			</List>
+		</Header>
+	);
 };

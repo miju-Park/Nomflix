@@ -129,6 +129,7 @@ export default function DetailPresenter({
     : result?.original_name;
   const pathInfo = useLocation();
   const { search: query, pathname } = pathInfo;
+  console.log(result)
   return loading ? (
     <>
       <Helmet>
@@ -179,7 +180,7 @@ export default function DetailPresenter({
             {result.imdb_id && (
               <a
                 target="_blank"
-                href={`https://www.imdb.com/title/${result.imdb_id}`}
+                href={`https://www.imdb.com/title/${result.imdb_id}?tab=video`}
               >
                 <ImdbItem
                   alt="IMDB Logo"
@@ -197,18 +198,21 @@ export default function DetailPresenter({
               >
                 Video
               </SLink>
+              {result.production_companies &&
               <SLink
                 isActive={query.includes("production")}
                 to={`${pathname}?tab=production`}
               >
                 Production
-              </SLink>
+              </SLink>}
+              {result.seasons &&
               <SLink
-                isActive={query.includes("more")}
-                to={`${pathname}?tab=more`}
+                isActive={query.includes("seasons")}
+                to={`${pathname}?tab=seasons`}
               >
-                More
+                Seasons
               </SLink>
+}
             </TabHeader>
             <TabBody>
               <DetailTabPresenter menu={query.split("=")[1]} info={result} />
